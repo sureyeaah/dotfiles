@@ -1,0 +1,78 @@
+Xft.rgba:      rgba
+Xft.antialias: 1
+URxvt*font: xft:Hack:pixelsize=14:style=bold
+
+! URxvt
+URxvt.modifier: mod1
+URxvt*loginShell: true
+URxvt*dynamicColors: on
+URxvt.imLocale: en_US.UTF-8
+URxvt.saveLines: 5000
+URxvt.scrollBar: false
+URxvt.scrollstyle: plain
+URxvt*termName: xterm-256color
+URxvt.transparent: false
+URxvt.visualBell: false
+URxvt*depth: 32
+URxvt.letterSpace: -1
+
+! Paste with shift-ctrl-v
+!URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.iso14755: False
+!URxvt.perl-ext-common: default,clipboard
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+
+! PaperColor Theme
+
+URxvt.foreground: #4D4D4C
+
+URxvt.background: #EEEEEE
+
+! black
+
+URxvt.color0: #EDEDED
+
+URxvt.color8: #969694
+
+! red
+
+URxvt.color1: #D7005F
+
+URxvt.color9: #D7005F
+
+! green
+
+URxvt.color2: #718C00
+
+URxvt.color10: #718C00
+
+! yellow / orange
+
+URxvt.color3: #D75F00
+
+URxvt.color11: #D75F00
+
+! blue
+
+URxvt.color4: #4271AE
+
+URxvt.color12: #4271AE
+
+! magenta
+
+URxvt.color5: #8959A8
+
+URxvt.color13: #8959A8
+
+! cyan
+
+URxvt.color6: #3E999F
+
+URxvt.color14: #3E999F
+
+! white
+
+URxvt.color7: #4D4D4C
+
+URxvt.color15: #F5F5F5
