@@ -1,0 +1,46 @@
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# dotfiles
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+# Customize to your needs...
+alias sudo='sudo -E '
+screenfetch
+#export tiny terminal care
+export TTC_CONSUMER_KEY='d6InJ1Lk1VOfqgPHEXk9yRC5t'
+export TTC_CONSUMER_SECRET='3LW7raTXbVjU6a5HsK8Si7KORQPCf7R3rgwqiKzrabUD15bkfj'
+export TTC_ACCESS_TOKEN='367731377-GLadhRyrnP83rXUwYLO6iN2DFDwOThUEwcAV7Yho'
+export TTC_ACCESS_TOKEN_SECRET='irZWvqhWG2JkPWQnWVfBA3FO5JIQ973217BTyALD6vSlG'
+export TTC_WEATHER='sirhind'
+#terminal
+#export TERM='rxvt-unicode'
+# using neovim
+alias vi=nvim
+#default editor
+export VISUAL='vi'
+export EDITOR='vi'
+#python virtual env
+export WORKON_HOME=~/.virtualenvs
+export PROJECT_HOME=~/Code
+# anaconda
+export PATH="$PATH:/opt/anaconda/bin"
+#source /usr/bin/virtualenvwrapper.sh
+
+#ruby
+#export PATH="$HOME/.rbenv/bin:$PATH"
+#eval "$(rbenv init -)"
+#export RBENV_ROOT="${HOME}/.rbenv"
+#if [ -d "${RBENV_ROOT}" ]; then
+#  export PATH="${RBENV_ROOT}/bin:${PATH}"
+#  eval "$(rbenv init -)"
+#fi
+
