@@ -227,7 +227,8 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # Screenshot
 bindsym Print exec xfce4-screenshooter -f -c
-
+# repeat rate
+exec xset r rate 300 30
 # clipboard manager
 exec --no-startup-id xfce4-clipman
 # set background
