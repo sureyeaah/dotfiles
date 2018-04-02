@@ -54,3 +54,5 @@ if [ "$(tty)" = "/dev/tty1" ] ; then
   ssh-add ~/.ssh/githubkey
   startx
 fi
+
+export PATH=$PATH:/home/shaurya/.local/bin
