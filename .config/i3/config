@@ -226,7 +226,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Screenshot
-bindsym Print exec xfce4-screenshooter -f -c
+bindsym Print exec notify-send "Screenshot copied to clipboard" && xfce4-screenshooter -f -c
 # touch to tap
 exec synclient TapButton1=1
 # repeat rate
@@ -234,12 +234,13 @@ exec xset r rate 300 30
 # clipboard manager
 exec --no-startup-id xfce4-clipman
 # set background
-exec_always feh --bg-scale /home/shaurya/Desktop/arch_ice.png
+exec_always feh --bg-scale /home/shaurya/Desktop/wallpaper.png
 # Network manager tray icon
 exec --no-startup-id nm-applet
 # Bar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 #Compton
 exec --no-startup-id compton -b --vsync opengl 
+# Replace caps with control
 exec setxkbmap -option ctrl:nocaps
 # vim:filetype=i3
