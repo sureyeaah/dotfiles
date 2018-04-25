@@ -195,8 +195,8 @@ set $Locker i3lock -c #000000 && sleep 1
 set $mode_system System:   L :  | S :  | P :  | R :  | E :   
 
 mode "$mode_system" {
-    bindsym l exec --no-startup-id i3lock -i ~/Desktop/tzuyu.png, mode "default"
-    bindsym s exec --no-startup-id systemctl suspend, mode "default
+    bindsym l exec --no-startup-id mylock, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend && mylock, mode "default
     bindsym p exec --no-startup-id systemctl poweroff -i, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"

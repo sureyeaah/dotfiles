@@ -14,7 +14,7 @@ fi
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 # Customize to your needs...
 alias sudo='sudo -E '
-screenfetch
+neofetch
 #export tiny terminal care
 export TTC_CONSUMER_KEY='d6InJ1Lk1VOfqgPHEXk9yRC5t'
 export TTC_CONSUMER_SECRET='3LW7raTXbVjU6a5HsK8Si7KORQPCf7R3rgwqiKzrabUD15bkfj'
