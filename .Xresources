@@ -1,4 +1,4 @@
-Xft.rgba:      rgba
+Xft.rgba:      rgb
 Xft.antialias: 1
 URxvt*font: xft:Hack:pixelsize=14:style=bold
 
@@ -23,58 +23,56 @@ URxvt.iso14755: False
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard
 URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
 
-! PaperColor Theme
+! ::::::::::::::::::::::::::::: THEME ::::::::::::::::::::::::::::::::::
+! Base16 Oxide
+! Scheme: Diki Ananta (https://github.com/dikiaap)
 
-URxvt.foreground: #4D4D4C
+#define base00 #212121
+#define base01 #343D46
+#define base02 #4F5B66
+#define base03 #65737E
+#define base04 #A7ADBA
+#define base05 #C0C5CE
+#define base06 #CDD3DE
+#define base07 #F3F4F5
+#define base08 #E57373
+#define base09 #F99157
+#define base0A #FAC863
+#define base0B #A6BC69
+#define base0C #5FB3B3
+#define base0D #6699CC
+#define base0E #C594C5
+#define base0F #AB7967
 
-URxvt.background: #EEEEEE
+*foreground:   base05
+#ifdef background_opacity
+*background:   [background_opacity]base00
+#else
+*background:   base00
+#endif
+*cursorColor:  base05
 
-! black
+*color0:       base00
+*color1:       base08
+*color2:       base0B
+*color3:       base0A
+*color4:       base0D
+*color5:       base0E
+*color6:       base0C
+*color7:       base05
 
-URxvt.color0: #EDEDED
+*color8:       base03
+*color9:       base08
+*color10:      base0B
+*color11:      base0A
+*color12:      base0D
+*color13:      base0E
+*color14:      base0C
+*color15:      base07
 
-URxvt.color8: #969694
-
-! red
-
-URxvt.color1: #D7005F
-
-URxvt.color9: #D7005F
-
-! green
-
-URxvt.color2: #718C00
-
-URxvt.color10: #718C00
-
-! yellow / orange
-
-URxvt.color3: #D75F00
-
-URxvt.color11: #D75F00
-
-! blue
-
-URxvt.color4: #4271AE
-
-URxvt.color12: #4271AE
-
-! magenta
-
-URxvt.color5: #8959A8
-
-URxvt.color13: #8959A8
-
-! cyan
-
-URxvt.color6: #3E999F
-
-URxvt.color14: #3E999F
-
-! white
-
-URxvt.color7: #4D4D4C
-
-URxvt.color15: #718C00
-
-
+*color16:      base09
+*color17:      base0F
+*color18:      base01
+*color19:      base02
+*color20:      base04
+*color21:      base06

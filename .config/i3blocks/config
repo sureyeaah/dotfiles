@@ -1,0 +1,29 @@
+command=/usr/lib/i3blocks/$BLOCK_NAME
+separator_block_width=15
+color=#F3F4F5
+markup=none
+
+[battery]
+#label=BAT
+label=⚡
+#instance=1
+interval=10
+
+[volume-pulseaudio]
+command=~/.local/bin/i3blocks-contrib/volume-pulseaudio/volume-pulseaudio -F 3 -f 3 -a -C '#F3F4F5' -m pulse -s Master
+interval=1
+signal=10
+
+[memory]
+label=
+interval=10
+
+[disk-root]
+label=
+command=df -h -P -l / | awk '/\/.*/ { print $5; exit 0 }'
+interval=30
+
+[time]
+label=
+command=date '+%a, %d %b %H:%M:%S'
+interval=5

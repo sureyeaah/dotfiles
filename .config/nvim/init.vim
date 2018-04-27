@@ -38,12 +38,13 @@ set clipboard=unnamedplus
 set autoread
 set hidden
 " colors, font, syntax
+
 filetype plugin indent on
 syntax on 
 set t_Co=256
 set encoding=utf-8
-set background=light
-colorscheme PaperColor
+set background=dark
+colorscheme minimalist
 
 " bindings
 let mapleader = " "
@@ -66,11 +67,10 @@ nmap <leader>q :bp <BAR> bd #<CR>
 nmap <leader>d :bd<CR>
 
 " Airline
-set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_theme='papercolor'
+let g:airline_theme='minimalist'
 " utilsnips
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
