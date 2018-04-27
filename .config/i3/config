@@ -11,14 +11,28 @@ set $mod Mod4
 font pango:Hack Bold 10
 
 #::::::::::::::::::::::::::::: Frame window colors :::::::::::::::::::::::::::::::::::#
-# class                 border  backgr. text    indicator child_border
-client.focused          #2B83A6 #2B83A6 #FFFFFF #DDDDDD   #2B83A6
-client.focused_inactive #212121 #212121 #86888C #292D2E   #5A5A5A
-client.unfocused        #212121 #212121 #86888C #292D2E   #5A5A5A
-client.urgent           #D64E4E #D64E4E #FFFFFF #D64E4E   #D64E4E
-client.placeholder      #212121 #0C0C0C #FFFFFF #212121   #262626
-client.background       #212121
+set_from_resource $base00 color0  #000000
+set_from_resource $base01 color18 #000000
+set_from_resource $base02 color19 #000000
+set_from_resource $base03 color8  #000000
+set_from_resource $base04 color20 #000000
+set_from_resource $base05 color7  #000000
+set_from_resource $base06 color21 #000000
+set_from_resource $base07 color15 #000000
+set_from_resource $base08 color1  #000000
+set_from_resource $base09 color16 #000000
+set_from_resource $base0A color11 #000000
+set_from_resource $base0B color2  #000000
+set_from_resource $base0C color14 #000000
+set_from_resource $base0D color12 #000000
+set_from_resource $base0E color5  #000000
+set_from_resource $base0F color17 #000000
 
+#                       class   border  backgr. text indicator
+client.focused          $base05 $base05 $base00 $base05
+client.focused_inactive $base03 $base03 $base05 $base03
+client.unfocused        $base03 $base03 $base05 $base00
+client.urgent           $base01 $base01 $base05 $base00
 
 #:::::::::::::::::::::::: Settings for gaps window ::::::::::::::::::::::::::::#
 
@@ -165,27 +179,27 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # start i3bar to display a workspace bar
-bar {
-    status_command          i3blocks
-    bindsym button4         nop
-    bindsym button5         nop
-    position                bottom
-    tray_output             primary
-    separator_symbol        "·"
-    workspace_buttons       yes
-    strip_workspace_numbers no
+#bar {
+    #status_command          i3blocks
+    #bindsym button4         nop
+    #bindsym button5         nop
+    #position                bottom
+    #tray_output             primary
+    #separator_symbol        "·"
+    #workspace_buttons       yes
+    #strip_workspace_numbers no
 
-    colors {
-        background  #212121
-        statusline  #DDDDDD
-        separator   #666666
-        # class             border  backgr. text
-        focused_workspace   #2B83A6 #2B83A6 #FFFFFF
-        active_workspace    #212121 #212121 #FFFFFF
-        inactive_workspace  #212121 #212121 #86888C
-        urgent_workspace    #D64E4E #D64E4E #FFFFFF
-    }
-}
+    #colors {
+        #background  #212121
+        #statusline  #DDDDDD
+        #separator   #666666
+        ## class             border  backgr. text
+        #focused_workspace   #2B83A6 #2B83A6 #FFFFFF
+        #active_workspace    #212121 #212121 #FFFFFF
+        #inactive_workspace  #212121 #212121 #86888C
+        #urgent_workspace    #D64E4E #D64E4E #FFFFFF
+    #}
+#}
 
 #::::::::::::::::::::::::::::::: Out system :::::::::::::::::::::::::::::::::::#
 
@@ -244,7 +258,7 @@ exec_always feh --bg-scale /home/shaurya/Desktop/wallpaper.png
 # Network manager tray icon
 exec --no-startup-id nm-applet
 # Bar
-# exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 #Compton
 exec --no-startup-id compton -b --vsync opengl 
 # Replace caps with control

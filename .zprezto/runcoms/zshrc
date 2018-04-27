@@ -24,8 +24,8 @@ export TTC_WEATHER='sirhind'
 # using neovim
 alias vi=nvim
 #default editor
-export VISUAL='vi'
-export EDITOR='vi'
+export VISUAL='nvim'
+export EDITOR='nvim'
 #python virtual env
 export WORKON_HOME=~/.virtualenvs
 export PROJECT_HOME=~/Code
