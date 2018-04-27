@@ -1,8 +1,8 @@
 #!/bin/sh
 
-if ! mpc status | grep -q "playing"; then
-    echo ""
+if mpc status | grep -q "playing"; then
+    echo "[playing]"
 else
-    echo ""
+    echo ""
 
 fi

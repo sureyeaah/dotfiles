@@ -24,6 +24,7 @@ Plug 'colepeters/spacemacs-theme.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'mhartington/oceanic-next'
 call plug#end()
 
 " general settings
@@ -44,7 +45,7 @@ syntax on
 set t_Co=256
 set encoding=utf-8
 set background=dark
-colorscheme minimalist
+colorscheme OceanicNext
 
 " bindings
 let mapleader = " "
@@ -70,7 +71,7 @@ nmap <leader>d :bd<CR>
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_theme='minimalist'
+let g:airline_theme='oceanicnext'
 " utilsnips
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"

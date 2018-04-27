@@ -70,15 +70,15 @@
 ;font-3 = Kochi Gothic:size=4;1
         font-0 = Hack:pixelsize=5;2
         font-1 = FontAwesome:pixelsize=5;2
-	modules-left   = music previous playpause next
+	modules-left   = music playpause
+;previous playpause next
 	modules-center = workspaces
-	modules-right  = cpu ram volume battery date
+	modules-right  = filesystem cpu ram volume battery date
 
 	fixed-center = true
 
         tray-position = right
         tray-background = ${xrdb:color0}
-        tray-padding = 0
 ;--------------------------------------------
 ; modules                                   ;
 ;--------------------------------------------
@@ -98,7 +98,7 @@
 [module/date]
 	type     = internal/date
 	interval = 1.0
-	time     = "%a %I:%M %p"
+	time     = "%a %I:%M:%S %p"
 	label    = "%time%"
 
 	format         = <label>
@@ -129,7 +129,7 @@
 	label = %output%
 	label-background = ${xrdb:color0}
 	label-foreground = ${xrdb:color7}
-	label-padding = 1
+	label-padding = 0
 
 	click-left = mpc toggle
 
@@ -363,3 +363,22 @@ label-full = "BAT %percentage%%"
 	label-background = ${colors.modules_bg}
 	label-foreground = ${colors.modules_fg}
 	label-padding    = 1
+
+[module/filesystem]
+type = internal/fs
+
+; Mountpoints to display
+mount-0 = /
+mount-1 = /home
+
+; Seconds to sleep between updates
+; Default: 30
+interval = 20
+
+; Display fixed precision values
+; Default: false
+fixed-values = true
+
+; Spacing between entries
+; Default: 2
+spacing = 1
