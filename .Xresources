@@ -10,7 +10,7 @@ URxvt.imLocale: en_US.UTF-8
 URxvt.saveLines: 5000
 URxvt.scrollBar: false
 URxvt.scrollstyle: plain
-URxvt*termName: xterm-256color
+URxvt*termName: rxvt-unicode-256color
 URxvt.transparent: false
 URxvt.visualBell: false
 URxvt*depth: 32

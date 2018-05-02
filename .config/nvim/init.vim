@@ -45,7 +45,7 @@ syntax on
 set t_Co=256
 set encoding=utf-8
 set background=dark
-colorscheme OceanicNext
+colorscheme OceanicNext 
 
 " bindings
 let mapleader = " "
