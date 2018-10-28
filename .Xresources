@@ -1,6 +1,6 @@
 Xft.rgba:      rgb
 Xft.antialias: 1
-URxvt*font: xft:Hack:pixelsize=15:style=bold
+URxvt*font: xft:Gintronic:pixelsize=15:style=bold
 
 ! URxvt
 URxvt.modifier: mod1

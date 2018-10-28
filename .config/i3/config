@@ -118,10 +118,10 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
-set $ws1 1:File
+set $ws1 1:Fun
 set $ws2 2:Browser
-set $ws3 3:Work
-set $ws4 4:Editor
+set $ws3 3:Editor
+set $ws4 4:Work
 set $ws5 5:Kodi
 
 # switch to workspace
@@ -249,7 +249,7 @@ bindsym XF86AudioNext exec mpc next
 bindsym XF86AudioPrev exec mpc prev
 
 # Screenshot
-bindsym Print exec notify-send "Screenshot copied to clipboard" && xfce4-screenshooter -f -c
+bindsym Print exec xfce4-screenshooter -f -c 
 # touch to tap
 exec synclient TapButton1=1
 # repeat rate

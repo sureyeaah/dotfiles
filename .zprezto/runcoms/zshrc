@@ -12,6 +12,8 @@ fi
 
 # dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+# list directories
+alias lsd='ls -d */'
 # Customize to your needs...
 alias sudo='sudo -E '
 neofetch

@@ -7,6 +7,7 @@ Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
 Plug 'scrooloose/nerdtree'
 Plug 'qpkorr/vim-bufkill'
+Plug 'easymotion/vim-easymotion'
 " Airline
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
@@ -46,12 +47,13 @@ set t_Co=256
 set encoding=utf-8
 set background=dark
 colorscheme OceanicNext 
+autocmd BufRead *.sql set filetype=mysql      
 
 " bindings
 let mapleader = " "
 nmap <F2> :mksession! ~/.vim_session<CR> 
 nmap <F3> :source ~/.vim_session<CR> 
-autocmd FileType cpp nnoremap <silent> <F5> :<C-U>!g++ -Wall -g -O2 % -o ~/Code/a.out && timeout 4s ~/Code/./a.out < ~/Code/input.txt > ~/Code/output.txt<CR><CR>
+autocmd FileType cpp nnoremap <silent> <F5> :<C-U>!g++ -Wall -g -O2 % -o ~/Code/a.out && timeout 4s ~/Code/./a.out < ~/Code/input.txt > ~/Code/output.txt<CR>
 nmap <C-A> ggvG$
 vmap <C-C> "+y
 nmap <C-C> "+yy
@@ -65,7 +67,7 @@ nmap <leader>l :bn<CR>
 nmap <leader>h :bp<CR>
 nmap <leader>bl :ls<CR>
 nmap <leader>q :bp <BAR> bd #<CR>
-nmap <leader>d :bd<CR>
+nmap <leader>d :BD<CR>
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
