@@ -118,10 +118,10 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
-set $ws1 1:Fun
-set $ws2 2:Browser
+set $ws1 1:Browser
+set $ws2 2:Terminal
 set $ws3 3:Editor
-set $ws4 4:Work
+set $ws4 4:Reading
 set $ws5 5:Kodi
 
 # switch to workspace

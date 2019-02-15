@@ -22,9 +22,10 @@ export TTC_CONSUMER_KEY='d6InJ1Lk1VOfqgPHEXk9yRC5t'
 export TTC_CONSUMER_SECRET='3LW7raTXbVjU6a5HsK8Si7KORQPCf7R3rgwqiKzrabUD15bkfj'
 export TTC_ACCESS_TOKEN='367731377-GLadhRyrnP83rXUwYLO6iN2DFDwOThUEwcAV7Yho'
 export TTC_ACCESS_TOKEN_SECRET='irZWvqhWG2JkPWQnWVfBA3FO5JIQ973217BTyALD6vSlG'
-export TTC_WEATHER='sirhind'
+export TTC_WEATHER='patna'
 # using neovim
 alias vi=nvim
+alias vim=nvim
 #default editor
 export VISUAL='nvim'
 export EDITOR='nvim'
