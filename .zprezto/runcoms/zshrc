@@ -34,6 +34,8 @@ export WORKON_HOME=~/.virtualenvs
 export PROJECT_HOME=~/Code
 # anaconda
 export PATH="$PATH:/opt/anaconda/bin"
+# local bin
+export PATH="$PATH:/home/shaurya/.local/bin"
 #source /usr/bin/virtualenvwrapper.sh
 
 #ruby
@@ -45,3 +47,5 @@ export PATH="$PATH:/opt/anaconda/bin"
 #  eval "$(rbenv init -)"
 #fi
 
+# opam configuration
+test -r /home/shaurya/.opam/opam-init/init.zsh && . /home/shaurya/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

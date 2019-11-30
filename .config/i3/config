@@ -38,8 +38,8 @@ client.urgent           $base01 $base01 $base05 $base00
 
 #smart_gaps on
 #smart_borders on
-gaps inner 8
-gaps outer 2
+#gaps inner 8
+#gaps outer 2
 
 default_border pixel 3
 default_floating_border pixel 1
@@ -54,7 +54,7 @@ floating_modifier $mod
 focus_follows_mouse no
 
 # start a terminal
-bindsym $mod+Return exec urxvt 
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -118,11 +118,16 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
-set $ws1 1:Browser
-set $ws2 2:Terminal
-set $ws3 3:Editor
-set $ws4 4:Reading
-set $ws5 5:Kodi
+set $ws1 1:
+set $ws2 2:
+set $ws3 3:
+set $ws4 4:
+set $ws5 5:
+set $ws6 6:
+set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws10 10:
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -130,11 +135,11 @@ bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
 bindsym $mod+shift+1  move container to workspace $ws1
@@ -142,11 +147,11 @@ bindsym $mod+shift+2  move container to workspace $ws2
 bindsym $mod+shift+3  move container to workspace $ws3
 bindsym $mod+shift+4  move container to workspace $ws4
 bindsym $mod+shift+5  move container to workspace $ws5
-bindsym $mod+shift+6  move container to workspace 6
-bindsym $mod+shift+7  move container to workspace 7
-bindsym $mod+shift+8  move container to workspace 8
-bindsym $mod+shift+9  move container to workspace 9
-bindsym $mod+shift+0  move container to workspace 10
+bindsym $mod+shift+6  move container to workspace $ws6
+bindsym $mod+shift+7  move container to workspace $ws7
+bindsym $mod+shift+8  move container to workspace $ws8
+bindsym $mod+shift+9  move container to workspace $ws9
+bindsym $mod+shift+0  move container to workspace $ws10
 
 
 # reload the configuration file
@@ -208,7 +213,7 @@ set $mode_system System:   L :  | S :  | P :  | R :  | E : 
 
 mode "$mode_system" {
     bindsym l exec --no-startup-id mylock, mode "default"
-    bindsym s exec --no-startup-id systemctl suspend && mylock, mode "default
+    bindsym s exec --no-startup-id mylock && systemctl suspend, mode "default"
     bindsym p exec --no-startup-id systemctl poweroff -i, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
@@ -230,9 +235,13 @@ for_window [class="Boostnote"]                      floating enable
 
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q sset Master 5%+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset Master 5%-
+bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Sreen brightness controls
 # increase screen brightness
@@ -241,15 +250,16 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10 && notify-send $(echo "brigh
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 # Media player controls
-# bindsym XF86AudioPause exec playerctl play-pause
-# bindsym XF86AudioNext exec playerctl next
-# bindsym XF86AudioPrev exec playerctl previous
-bindsym XF86AudioPause exec mpc toggle
-bindsym XF86AudioNext exec mpc next
-bindsym XF86AudioPrev exec mpc prev
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+#bindsym XF86AudioPause exec mpc toggle
+#bindsym XF86AudioNext exec mpc next
+#bindsym XF86AudioPrev exec mpc prev
 
 # Screenshot
-bindsym Print exec xfce4-screenshooter -f -c 
+bindsym Print exec gnome-screenshot -i
+bindsym $mod+Print exec gnome-screenshot -c
 # touch to tap
 exec synclient TapButton1=1
 # repeat rate
@@ -260,10 +270,12 @@ exec --no-startup-id xfce4-clipman
 exec_always feh --bg-scale /home/shaurya/Desktop/wallpaper.png
 # Network manager tray icon
 exec --no-startup-id nm-applet
+# Bluetooth applet
+exec --no-startup-id blueman-applet
 # Bar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 #Compton
-exec --no-startup-id compton -b --vsync opengl 
+#exec --no-startup-id picom -b
 # Replace caps with control
 exec setxkbmap -option ctrl:nocaps
 # vim:filetype=i3
