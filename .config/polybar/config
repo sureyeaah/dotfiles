@@ -82,6 +82,7 @@
 
         tray-position = right
         tray-background = ${colors.bar_bg}
+        tray-detached = false
 ;--------------------------------------------
 ; modules                                   ;
 ;--------------------------------------------
