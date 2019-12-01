@@ -22,8 +22,8 @@ URxvt.internalBorder: 6
 *.color9:       #80969b
 
 ! green
-*.color2:       #56737a
-*.color10:      #56737a
+*.color2:       #98C379
+*.color10:      #98C379
 
 ! yellow
 *.color3:       #416269

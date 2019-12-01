@@ -4,31 +4,34 @@
 ;--------------------------------------------
 
 [colors]
+        *.foreground:   #c5c8c6
+        *.background:   #1e1e20
+        *.cursorColor:  #c5c8c6
 
-	bar_bg = ${xrdb:color0}
-	bar_fg = ${xrdb:color7}
+        black = ${xrdb:color0}
+        red = ${xrdb:color1}
+        green = ${xrdb:color2}
+        yellow = ${xrdb:color3}
+        blue = ${xrdb:color4}
+        magenta = ${xrdb:color5}
+        cyan = ${xrdb:color6}
+        white = ${xrdb:color7}
+
+	bar_fg = ${xrdb:foreground}
+	bar_bg = ${xrdb:background}
 
 	border_col = ${xrdb:color0}
 
-	modules_bg = ${xrdb:color7}
-	modules_fg = ${xrdb:color0}
+	modules_fg = ${self.bar_fg}
+	modules_bg = ${self.bar_bg}
 
 	mod_bg = ${xrdb:color7}
 
-	modules_prefix_bg = ${xrdb:color7}
-	modules_prefix_fg = ${xrdb:color0}
+	modules_prefix_bg = ${self.bar_bg}
+	modules_prefix_fg = ${self.bar_fg}
 
 	urgent_bg  = ${xrdb:color1}
 	focused_bg = ${xrdb:color10}
-
-	essid_p_bg   = ${xrdb:color6}
-	down_p_bg    = #5e606c
-	cpu_p_bg     = ${xrdb:color5}
-	ram_p_bg     = ${xrdb:color11}
-	vol_p_bg     = #637b81
-	bright_p_bg  = #c29f6f
-	battery_p_bg = ${xrdb:color9}
-	time_p_bg    = ${xrdb:color10}
 
 ;--------------------------------------------
 ; bars                                      ;
@@ -37,14 +40,14 @@
 [bar/base]
 	dpi      = 192
 	width    = 100%
-	height   = 32
+	height   = 35
 	offset-x = 0
 	offset-y = 0
 
 	bottom = true
 
-	background = ${xrdb:color0}
-	foreground = ${xrdb:color7}
+	background = ${colors.bar_bg}
+	foreground = ${colors.bar_fg}
 
 	border-bottom-size  = 0
 	border-top-size     = 0
@@ -52,11 +55,11 @@
 	border-left-size  = 0
 	border-right-size = 0
 
-	border-bottom-color = ${xrdb:color0}
-	border-top-color    = ${xrdb:color0}
+	border-bottom-color = ${colors.bar_bg}
+	border-top-color    = ${colors.bar_bg}
 
-	border-left-color = ${xrdb:color0}
-	border-right-colo = ${xrdb:color0}
+	border-left-color = ${colors.bar_bg}
+	border-right-colo = ${colors.bar_bg}
 
 	spacing            = 0
 	padding-left       = 1
@@ -72,13 +75,13 @@
         font-1 = FontAwesome:pixelsize=5;2
 ;previous playpause next
 	modules-left = workspaces
-	modules-center = music
+	modules-center = xwindow
 	modules-right  = filesystem cpu ram battery volume date
 
 	fixed-center = true
 
         tray-position = right
-        tray-background = ${xrdb:color0}
+        tray-background = ${colors.bar_bg}
 ;--------------------------------------------
 ; modules                                   ;
 ;--------------------------------------------
@@ -94,6 +97,7 @@
 	format        = <label>
 	label         = %title:0:50:%
 	label-padding = 1
+	label-foreground = ${colors.red}
 
 [module/date]
 	type     = internal/date
@@ -105,8 +109,7 @@
 	format-padding = 0
 
 
-	label-background = ${xrdb:color0}
-	label-foreground = ${xrdb:color2}
+	label-foreground = ${colors.yellow}
 	label-padding    = 0
 
 [module/previous]
@@ -175,14 +178,11 @@ adapter = AC
 full-at = 100
 
 format-charging = <label-charging>
-format-charging-foreground = ${xrdb:color4}
-format-charging-background = ${xrdb:color0}
+format-charging-foreground = ${colors.cyan}
 format-discharging = <label-discharging>
-format-discharging-foreground = ${xrdb:color1}
-format-discharging-background = ${xrdb:color0}
+format-discharging-foreground = ${colors.yellow}
 format-full = <label-full>
-format-full-foreground = ${xrdb:color4}
-format-full-background = ${xrdb:color0}
+format-full-foreground = ${colors.green}
 
 label-charging = "CHR %percentage%%"
 label-discharging = "BAT %percentage%%"
@@ -195,15 +195,13 @@ label-full = "BAT %percentage%%"
 	format-volume = <label-volume>
 
 	label-volume            = " %percentage%"
-	label-volume-background = ${xrdb:color0}
-	label-volume-foreground = ${xrdb:color3}
+	label-volume-foreground = ${colors.white}
 	label-volume-padding    = 0
 
 	format-muted = <label-muted>
 
 	label-muted            = " MUTED"
-	label-muted-background = ${xrdb:color0}
-	label-muted-foreground = ${xrdb:color7}
+	label-muted-foreground = ${colors.green}
 	label-muted-padding    = 0
 
 	format-volume-padding = 1
@@ -214,8 +212,7 @@ label-full = "BAT %percentage%%"
 	interval         = 0.5
 	format           = <label>
 	label            = "CPU %percentage%%"
-	label-background = ${xrdb:color0}
-	label-foreground = ${xrdb:color5}
+	label-foreground = ${colors.blue}
 	label-padding    = 1
 
 
@@ -225,8 +222,7 @@ label-full = "BAT %percentage%%"
 
 	format           = <label>
 	label            = "RAM %percentage_used%%"
-	label-background = ${xrdb:color0}
-	label-foreground = ${xrdb:color6}
+	label-foreground = ${colors.white}
 	label-padding    = 1
 
 
@@ -299,28 +295,24 @@ label-full = "BAT %percentage%%"
 	wrapping-scroll = false
 	strip-wsnumbers = true
 
-	label-mode-background = ${xrdb:color7}
-	label-mode-foreground = ${xrdb:color0}
+	label-mode-background = ${colors.white}
+	label-mode-foreground = ${colors.black}
 	label-mode-padding    = 2
 
 	label-focused            = %name%
-	label-focused-background = ${xrdb:color0}
-	label-focused-foreground = ${xrdb:color10}
+	label-focused-foreground = ${colors.yellow}
 	label-focused-padding    = 2
 
 	label-unfocused            = %name%
-	label-unfocused-background = ${xrdb:color0}
-	label-unfocused-foreground = ${xrdb:color7}
+	label-unfocused-foreground = ${colors.white}
 	label-unfocused-padding    = 2
 
 	label-visible            = %name%
-	label-visible-background = ${xrdb:color0}
-	label-visible-foreground = ${xrdb:color7}
+	label-visible-foreground = ${colors.white}
 	label-visible-padding    = 2
 
 	label-urgent            = %name%
-	label-urgent-background = ${xrdb:color0}
-	label-urgent-foreground = ${xrdb:color1}
+	label-urgent-foreground = ${colors.green}
 	label-urgent-padding    = 2
 
 
@@ -386,3 +378,4 @@ fixed-values = true
 ; Spacing between entries
 ; Default: 2
 spacing = 1
+label-foreground = ${colors.white}
