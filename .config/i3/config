@@ -19,11 +19,11 @@ set $white              #C5C8C6
 set $yellow             #F0C674
 set $red                #CC6666
 set $darkred            #A54242
-set $green              #B5BD56
+set $green              #98C379
 set $blue               #56737a
 
 #class                  border      backgr.     text        split
-client.focused          $blue       $blue       $black      $blue
+client.focused          $green       $green       $black      $green
 client.focused_inactive $grey       $grey       $lightgrey  $grey
 client.unfocused        $grey       $grey       $lightgrey  $grey
 client.urgent           $red        $red        $black      $red
