@@ -21,6 +21,10 @@ Plug 'neovimhaskell/haskell-vim'
 " Themes
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'flazz/vim-colorschemes'
+Plug 'ayu-theme/ayu-vim'
+Plug 'rakr/vim-one'
 call plug#end()
 
 " general settings
@@ -34,6 +38,7 @@ set mouse=a
 set clipboard=unnamedplus
 set autoread
 set hidden
+set termguicolors
 "set signcolumn=yes
 " colors, font, syntax
 
@@ -42,7 +47,7 @@ syntax on
 set t_Co=256
 set encoding=utf-8
 set background=dark
-colorscheme gruvbox
+colorscheme one
 autocmd BufRead *.sql set filetype=mysql      
 set cmdheight=2
 set updatetime=300
@@ -95,7 +100,7 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_theme='gruvbox'
+let g:airline_theme='one'
 let g:airline_powerline_fonts = 1
 "let g:airline#extensions#coc#enabled = 1
 "let airline#extensions#coc#error_symbol = 'E:'

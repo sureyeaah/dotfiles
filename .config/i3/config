@@ -11,29 +11,23 @@ set $mod Mod4
 font pango:Hack Bold 10
 
 #::::::::::::::::::::::::::::: Frame window colors :::::::::::::::::::::::::::::::::::#
-set_from_resource $base00 color0  #000000
-set_from_resource $base01 color18 #000000
-set_from_resource $base02 color19 #000000
-set_from_resource $base03 color8  #000000
-set_from_resource $base04 color20 #000000
-set_from_resource $base05 color7  #000000
-set_from_resource $base06 color21 #000000
-set_from_resource $base07 color15 #000000
-set_from_resource $base08 color1  #000000
-set_from_resource $base09 color16 #000000
-set_from_resource $base0A color11 #000000
-set_from_resource $base0B color2  #000000
-set_from_resource $base0C color14 #000000
-set_from_resource $base0D color12 #000000
-set_from_resource $base0E color5  #000000
-set_from_resource $base0F color17 #000000
+set $back               #1d1F21
+set $black              #282A2E
+set $grey               #373B41
+set $lightgrey          #707880
+set $white              #C5C8C6
+set $yellow             #F0C674
+set $red                #CC6666
+set $darkred            #A54242
+set $green              #B5BD56
+set $blue               #56737a
 
-#                       class   border  backgr. text indicator
-client.focused          $base05 $base05 $base00 $base05
-client.focused_inactive $base03 $base03 $base05 $base03
-client.unfocused        $base03 $base03 $base05 $base00
-client.urgent           $base01 $base01 $base05 $base00
-
+#class                  border      backgr.     text        split
+client.focused          $blue       $blue       $black      $blue
+client.focused_inactive $grey       $grey       $lightgrey  $grey
+client.unfocused        $grey       $grey       $lightgrey  $grey
+client.urgent           $red        $red        $black      $red
+client.background       $back
 #:::::::::::::::::::::::: Settings for gaps window ::::::::::::::::::::::::::::#
 
 #smart_gaps on
@@ -41,7 +35,7 @@ client.urgent           $base01 $base01 $base05 $base00
 #gaps inner 8
 #gaps outer 2
 
-default_border pixel 3
+default_border pixel 2
 default_floating_border pixel 1
 
 # set popups during fullscreen mode
@@ -60,7 +54,7 @@ bindsym $mod+Return exec termite
 bindsym $mod+Shift+q kill
 
 #start rofi
-bindsym $mod+d exec rofi -show run  #-lines 3 -eh 1 -width 40 -location 8 -xoffset 170 -yoffset 70 -padding 30 -disable-history -font "Roboto 18"
+bindsym $mod+d exec rofi -show run
 bindsym $mod+Tab exec rofi -show window -hide-scrollbar
 # start dmenu (a program launcher)
 # bindsym $mod+40 exec dmenu_run

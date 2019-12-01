@@ -1,1 +1,1 @@
-Guifont Hack:h14
+Guifont Fira Code Nerd Font:h14

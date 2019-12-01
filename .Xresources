@@ -1,75 +1,67 @@
-Xft.rgba:      rgb
-Xft.antialias: 1
-URxvt*font: xft:Gintronic:pixelsize=15:style=bold
+*background:            #272827
+*foreground:            #657b83
+*fading:                15
+*fadeColor:             black
+*cursorColor:           #16A085
+*pointerColorBackground:#2B2C2B
+*pointerColorForeground:#16A085
 
-! URxvt
-URxvt.modifier: mod1
-URxvt*loginShell: true
-URxvt*dynamicColors: on
-URxvt.imLocale: en_US.UTF-8
-URxvt.saveLines: 5000
-URxvt.scrollBar: false
-URxvt.scrollstyle: plain
-URxvt*termName: rxvt-unicode-256color
-URxvt.transparent: false
-URxvt.visualBell: false
-URxvt*depth: 32
-URxvt.letterSpace: -1
+URxvt.internalBorder: 6
 
-! Paste with shift-ctrl-v
-!URxvt.keysym.Shift-Control-V: perl:clipboard:paste
-URxvt.iso14755: False
-!URxvt.perl-ext-common: default,clipboard
-URxvt.keysym.Shift-Control-V: eval:paste_clipboard
-URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+! special
+*.foreground:   #c5c8c6
+*.background:   #1e1e20
+*.cursorColor:  #c5c8c6
 
-! Base16 Oceanic Next
-! Scheme: Dmitri Voronianski (http://pixelhunter.me)
+! black
+*.color0:       #1e1e20
+*.color8:       #a1abad
 
-#define base00 #1B2B34
-#define base01 #343D46
-#define base02 #4F5B66
-#define base03 #65737E
-#define base04 #A7ADBA
-#define base05 #C0C5CE
-#define base06 #CDD3DE
-#define base07 #D8DEE9
-#define base08 #EC5f67
-#define base09 #F99157
-#define base0A #FAC863
-#define base0B #99C794
-#define base0C #5FB3B3
-#define base0D #6699CC
-#define base0E #C594C5
-#define base0F #AB7967
+! red
+*.color1:       #80969b
+*.color9:       #80969b
 
-*.foreground:   base05
-*.background:   base00
-*.cursorColor:  base05
+! green
+*.color2:       #56737a
+*.color10:      #56737a
 
-*.color0:       base00
-*.color1:       base08
-*.color2:       base0B
-*.color3:       base0A
-*.color4:       base0D
-*.color5:       base0E
-*.color6:       base0C
-*.color7:       base05
+! yellow
+*.color3:       #416269
+*.color11:      #416269
 
-*.color8:       base03
-*.color9:       base08
-*.color10:      base0B
-*.color11:      base0A
-*.color12:      base0D
-*.color13:      base0E
-*.color14:      base0C
-*.color15:      base07
+! blue
+*.color4:       #2c5159
+*.color12:      #2c5159
 
-! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
-! use 'shell' template to set these if necessary
-*.color16:      base09
-*.color17:      base0F
-*.color18:      base01
-*.color19:      base02
-*.color20:      base04
-*.color21:      base06
+! magenta
+*.color5:       #274850
+*.color13:      #274850
+
+! cyan
+*.color6:       #1e383e
+*.color14:      #1e383e
+
+! white
+*.color7:       #a1abad
+*.color15:      #a1abad
+
+
+! Enable the extended coloring options
+rofi.color-enabled: true
+!                  bg       border   separator
+rofi.color-window: #1e1e20, #274850, #274850
+!                  bg       fg       bg-alt   hl-bg    hl-fg
+rofi.color-normal: #1e1e20, #c5c8c6, #1e1e20, #1e1e20, #274850
+rofi.color-active: #1e1e20, #c5c8c6, #1e1e20, #1e1e20, #274850
+rofi.color-urgent: #1e1e20, #c5c8c6, #1e1e20, #1e1e20, #274850
+
+rofi.separator-style: solid
+rofi.sidebar-mode: true
+!rofi.font: Hack Regular 12
+rofi.font: Fira Code Nerd Font 12
+rofi.bw: 1
+rofi.columns: 2
+rofi.fixed-num-lines: true
+rofi.hide-scrollbar: true
+rofi.show-icons: true
+rofi.lines: 12
