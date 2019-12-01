@@ -11,9 +11,10 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'qpkorr/vim-bufkill'
 Plug 'easymotion/vim-easymotion'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'terryma/vim-smooth-scroll'
+"Plug 'terryma/vim-smooth-scroll'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
+"Plug 'yonchu/accelerated-smooth-scroll'
 " Syntax
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'neovimhaskell/haskell-vim'
@@ -85,10 +86,10 @@ map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 " smooth scroll
-noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 8, 2)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 8, 2)<CR>
-noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 8, 4)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 8, 4)<CR>
+"noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 30, 2)<CR>
+"noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 30, 2)<CR>
+"noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 30, 4)<CR>
+"noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 30, 4)<CR>
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
@@ -96,9 +97,31 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts = 1
+"let g:airline#extensions#coc#enabled = 1
+"let airline#extensions#coc#error_symbol = 'E:'
+"let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
 
 " coc
 let g:coc_global_extensions = ['coc-pairs', 'coc-snippets',]
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -110,6 +133,26 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  "autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Find symbol of current document
+nnoremap <silent> <space>s  :<C-u>CocList outline<cr>
 
 " NERDtree
 autocmd StdinReadPre * let s:std_in=1
@@ -120,9 +163,9 @@ map <C-n> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 
 " utilsnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<c-j>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " haskell
 autocmd Filetype haskell setlocal tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
