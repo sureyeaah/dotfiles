@@ -8,7 +8,7 @@ set $mod Mod4
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 #font pango:DejaVu Sans Mono 8
-font pango:Fira Code Nerd Font Bold 10
+font pango:Fira Code Nerd Font Bold 12
 
 #::::::::::::::::::::::::::::: Frame window colors :::::::::::::::::::::::::::::::::::#
 set $back               #1d1F21
@@ -30,9 +30,9 @@ client.urgent           $red        $red        $black      $red
 client.background       $back
 #:::::::::::::::::::::::: Settings for gaps window ::::::::::::::::::::::::::::#
 
-#smart_gaps on
+smart_gaps on
 smart_borders on
-gaps inner 8
+gaps inner 10
 gaps outer 2
 
 default_border pixel 2
@@ -48,7 +48,7 @@ floating_modifier $mod
 focus_follows_mouse no
 
 # start a terminal
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill

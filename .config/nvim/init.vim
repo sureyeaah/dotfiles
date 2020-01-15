@@ -4,7 +4,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'honza/vim-snippets'
-Plug 'SirVer/ultisnips'
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
@@ -14,7 +13,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'terryma/vim-smooth-scroll'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
+Plug 'godlygeek/tabular'
 "Plug 'yonchu/accelerated-smooth-scroll'
+Plug 'lilydjwg/colorizer'
 " Syntax
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'neovimhaskell/haskell-vim'
@@ -39,6 +40,8 @@ set clipboard=unnamedplus
 set autoread
 set hidden
 set termguicolors
+set nobackup
+set nowritebackup
 "set signcolumn=yes
 " colors, font, syntax
 
@@ -84,7 +87,7 @@ nnoremap <leader>mk <C-w>k
 nnoremap <leader>ml <C-w>l
 
 " Close upper buffer
-nmap <leader>u <C-w>k:q<CR>
+" nmap <leader>u <C-w>k:q<CR>
 
 " Move to word
 map  <Leader>w <Plug>(easymotion-bd-w)
@@ -97,14 +100,14 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 "noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 30, 4)<CR>
 
 " Airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled  = 1
+let g:airline_powerline_fonts             = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_theme='one'
-let g:airline_powerline_fonts = 1
-"let g:airline#extensions#coc#enabled = 1
-"let airline#extensions#coc#error_symbol = 'E:'
-"let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
+let g:airline_theme                       = 'one'
+let g:airline_powerline_fonts             = 1
+let g:airline#extensions#coc#enabled = 1
+let airline#extensions#coc#error_symbol = 'E:'
+let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
 
 " coc
 let g:coc_global_extensions = ['coc-pairs', 'coc-snippets',]
@@ -159,37 +162,41 @@ nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " Find symbol of current document
 nnoremap <silent> <space>s  :<C-u>CocList outline<cr>
 
+" Tabular
+nmap <Leader>t= :Tabularize /=<CR>
+vmap <Leader>t= :Tabularize /=<CR>
+nmap <Leader>t: :Tabularize /:\zs<CR>
+vmap <Leader>t: :Tabularize /:\zs<CR>
+
 " NERDtree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "Toggle NERDTree with Ctrl-N
 map <C-n> :NERDTreeToggle<CR>
 "Show hidden files in NERDTree
-let NERDTreeShowHidden=1
+let NERDTreeShowHidden = 1
 
-" utilsnips
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<c-j>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-
+" cpp
+autocmd Filetype cpp setlocal tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 " haskell
+autocmd Filetype haskell setlocal formatprg=stylish-haskell
 autocmd Filetype haskell setlocal tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
-let g:cabal_indent_section = 2
-let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
-"let g:haskell_classic_highlighting = 1
-let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
-let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
-let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:cabal_indent_section            = 2
+let g:haskell_backpack                = 1                " to enable highlighting of backpack keywords
+let g:haskell_classic_highlighting    = 0
+let g:haskell_enable_quantification   = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo      = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax      = 1      " to enable highlighting of `proc`
 let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
-let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
-let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
-let g:haskell_indent_if = 3
-let g:haskell_indent_case = 2
-let g:haskell_indent_let = 4
-let g:haskell_indent_where = 6
-let g:haskell_indent_before_where = 2
+let g:haskell_enable_typeroles        = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers  = 1  " to enable highlighting of `static`
+let g:haskell_indent_if               = 3
+let g:haskell_indent_case             = 2
+let g:haskell_indent_let              = 4
+let g:haskell_indent_where            = 6
+let g:haskell_indent_before_where     = 2
 let g:haskell_indent_after_bare_where = 2
-let g:haskell_indent_do = 3
-let g:haskell_indent_in = 1
-let g:haskell_indent_guard = 2
+let g:haskell_indent_do               = 3
+let g:haskell_indent_in               = 1
+let g:haskell_indent_guard            = 2
 let g:haskell_indent_case_alternative = 1
