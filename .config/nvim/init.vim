@@ -22,10 +22,10 @@ Plug 'neovimhaskell/haskell-vim'
 " Themes
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
-Plug 'NLKNguyen/papercolor-theme'
 Plug 'flazz/vim-colorschemes'
 Plug 'ayu-theme/ayu-vim'
 Plug 'rakr/vim-one'
+Plug 'dracula/vim'
 call plug#end()
 
 " general settings
@@ -50,7 +50,7 @@ syntax on
 set t_Co=256
 set encoding=utf-8
 set background=dark
-colorscheme one
+colorscheme dracula
 autocmd BufRead *.sql set filetype=mysql      
 set cmdheight=2
 set updatetime=300
@@ -103,7 +103,7 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 let g:airline#extensions#tabline#enabled  = 1
 let g:airline_powerline_fonts             = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_theme                       = 'one'
+let g:airline_theme                       = 'dracula'
 let g:airline_powerline_fonts             = 1
 let g:airline#extensions#coc#enabled = 1
 let airline#extensions#coc#error_symbol = 'E:'
@@ -183,7 +183,7 @@ autocmd Filetype haskell setlocal formatprg=stylish-haskell
 autocmd Filetype haskell setlocal tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 let g:cabal_indent_section            = 2
 let g:haskell_backpack                = 1                " to enable highlighting of backpack keywords
-let g:haskell_classic_highlighting    = 0
+let g:haskell_classic_highlighting    = 1
 let g:haskell_enable_quantification   = 1   " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo      = 1      " to enable highlighting of `mdo` and `rec`
 let g:haskell_enable_arrowsyntax      = 1      " to enable highlighting of `proc`
