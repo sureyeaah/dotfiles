@@ -14,11 +14,15 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
 Plug 'godlygeek/tabular'
+Plug 'kien/ctrlp.vim'
+Plug 'tpope/vim-fugitive'
 "Plug 'yonchu/accelerated-smooth-scroll'
 Plug 'lilydjwg/colorizer'
 " Syntax
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'neovimhaskell/haskell-vim'
+Plug 'purescript-contrib/purescript-vim'
+Plug 'vmchale/dhall-vim'
 " Themes
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
@@ -176,6 +180,12 @@ map <C-n> :NERDTreeToggle<CR>
 "Show hidden files in NERDTree
 let NERDTreeShowHidden = 1
 
+" ctrlp
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+
 " cpp
 autocmd Filetype cpp setlocal tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 " haskell
@@ -200,3 +210,17 @@ let g:haskell_indent_do               = 3
 let g:haskell_indent_in               = 1
 let g:haskell_indent_guard            = 2
 let g:haskell_indent_case_alternative = 1
+" purescript
+let purescript_indent_if = 3
+let purescript_indent_case = 5
+let purescript_indent_let = 4
+let purescript_indent_where = 6
+let purescript_indent_do = 3
+let purescript_indent_in = 1
+let purescript_indent_dot = v:true
+
+
+
+
+
+
