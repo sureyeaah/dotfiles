@@ -9,3 +9,13 @@
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
+# anaconda
+export PATH=/opt/anaconda/bin:$PATH
+# local bin
+export PATH=/home/shaurya/.local/bin:$PATH
+export PATH=/home/shaurya/.npm/node_modules/bin/:$PATH
+export PATH=/home/shaurya/.ghcup/bin:$PATH
+#export PATH=/home/shaurya/.xmonad:$PATH
+if [ -e /home/shaurya/.nix-profile/etc/profile.d/nix.sh ]; then . /home/shaurya/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+# opam configuration
+test -r /home/shaurya/.opam/opam-init/init.zsh && . /home/shaurya/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

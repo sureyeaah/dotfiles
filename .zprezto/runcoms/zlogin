@@ -24,3 +24,9 @@
   fi
 
 } >&2
+
+if [ "$(tty)" = "/dev/tty1" ] ; then 
+  eval "$(ssh-agent -s)"
+  ssh-add ~/.ssh/githubkey
+  startx
+fi
