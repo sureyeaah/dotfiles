@@ -1,0 +1,12 @@
+#!/bin/sh -eu
+
+cd /home/shaurya/.xmonad/sureyeaah-xmonad/
+
+cabal new-configure \
+      --enable-optimization \
+      --enable-executable-stripping
+
+cabal build
+
+find dist-newstyle -type f -executable -name sureyeaah-xmonad \
+     -exec cp -u '{}' $1 ';'
