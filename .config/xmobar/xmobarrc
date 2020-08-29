@@ -1,0 +1,104 @@
+Config {
+
+  -- appearance
+    font =         "xft:Lekton Nerd Font Mono-11:antialias=true:style=bold"
+  , bgColor =      "#282a36"
+  , fgColor =      "#ebdbb2"
+  , position =     BottomP 0 70
+  , border =       BottomB
+  , borderColor =  "#282a36"
+  , textOffset = 15px
+
+  -- layout
+  , sepChar =  "%"   -- delineator between plugin names and straight text
+  , alignSep = "]["  -- separator between left-right alignment
+  , template = "-{%StdinReader%}---------------------------------------------------------------------------------------------------------------------------------][{ %VICG% }-{ %disku% }-{ %memory% }-{ %cpu% }-{ %dynnetwork% }-{ %battery% }-{ %alsa:default:Master% }-{ %date% }-"
+
+  -- general behavior
+  , lowerOnStart     = True -- send to bottom of window stack on start
+  , hideOnStart      = False   -- start with window unmapped (hidden)
+  , allDesktops      = True    -- show on all desktops
+  , overrideRedirect = True    -- set the Override Redirect flag (Xlib)
+  , pickBroadest     = False   -- choose widest display (multi-monitor)
+  , persistent       = False    -- enable/disable hiding (True          = disabled)
+
+  , commands =
+
+       -- weather monitor
+       [ Run Weather "VICG" [ "--template", "<fc=#448488><tempC></fc>°C"
+                            ] 18000
+
+       -- network activity monitor (dynamic interface resolution)
+       , Run DynNetwork     [ "--template" , "U:<tx>kB/s D:<rx>kB/s"
+                            , "--Low"      , "5000"       -- units: B/s
+                            , "--High"     , "50000"       -- units: B/s
+                            , "--low"     , "#cc231c"
+                            , "--normal"   , "#d79920"
+                            , "--high"      , "#689d69"
+                            ] 10
+
+       -- cpu activity monitor
+       , Run Cpu       [ "--template" , "CPU <total>%"
+                            , "--Low"      , "50"         -- units: %
+                            , "--High"     , "85"         -- units: %
+                            , "--low"      , "#689d69"
+                            , "--normal"   , "#d79920"
+                            , "--high"     , "#cc231c"
+                            ] 10
+
+       -- cpu core temperature monitor
+       -- , Run CoreTemp       [ "--template" , "Temp: <core0>°C|<core1>°C"
+       --                      , "--Low"      , "70"        -- units: °C
+       --                      , "--High"     , "80"        -- units: °C
+       --                      , "--low"      , "#689d69"
+       --                      , "--normal"   , "#d79920"
+       --                      , "--high"     , "#cc231c"
+       --                      ] 50
+
+       -- memory usage monitor
+       , Run Memory         [ "--template" ,"RAM <usedratio>%"
+                            , "--Low"      , "20"        -- units: %
+                            , "--High"     , "90"        -- units: %
+                            , "--low"      , "#689d69"
+                            , "--normal"   , "#d79920"
+                            , "--high"     , "#cc231c"
+                            ] 50
+
+       -- battery monitor
+       , Run Battery        [ "--template" , "<acstatus><left>"
+                            , "--Low"      , "10"        -- units: %
+                            , "--High"     , "80"        -- units: %
+                            , "--low"      , "#cc231c"
+                            , "--normal"   , "#d79920"
+                            , "--high"     , "#689d69"
+                            , "--"
+                            , "-O" , "CHA "
+                            , "-i", "CHA "
+                            , "-o", "BAT "
+                            , "-P"
+                            ] 50
+
+       -- time and date indicator
+       --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
+       , Run Date           "<fc=#b16185>%F %a %T</fc>" "date" 10
+
+       , Run DiskU          [("/", "root <usedp>%"), ("sdb3", "home <usedp>%")]
+                            [ "-L", "20"
+                            , "-H", "75"
+                            , "-m", "1"
+                            , "-p", "2"
+                            , "--low", "#689d69"
+                            , "--normal", "#d79920"
+                            , "--high", "#cc231c"
+                            ] 200
+       , Run Alsa "default" "Master" [ "--template", "<volumestatus>"
+                                     , "--low", "#d79920"
+                                     , "--normal", "#d79920"
+                                     , "--high", "#d79920"
+                                     , "--"
+                                     , "--on", "VOL "
+                                     , "--off", "MUTED"
+                                     , "--onc", "#ebdbb2" ]
+       , Run StdinReader
+       ]
+  }

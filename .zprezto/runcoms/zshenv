@@ -15,7 +15,9 @@ export PATH=/opt/anaconda/bin:$PATH
 export PATH=/home/shaurya/.local/bin:$PATH
 export PATH=/home/shaurya/.npm/node_modules/bin/:$PATH
 export PATH=/home/shaurya/.ghcup/bin:$PATH
+export PATH=/home/shaurya/.emacs.d/bin:$PATH
+export PATH=/home/shaurya/go/bin:$PATH
+export PATH=/home/shaurya/.cabal/bin/:$PATH
 #export PATH=/home/shaurya/.xmonad:$PATH
+
 if [ -e /home/shaurya/.nix-profile/etc/profile.d/nix.sh ]; then . /home/shaurya/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-# opam configuration
-test -r /home/shaurya/.opam/opam-init/init.zsh && . /home/shaurya/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

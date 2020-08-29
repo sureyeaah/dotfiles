@@ -10,6 +10,9 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'qpkorr/vim-bufkill'
 Plug 'easymotion/vim-easymotion'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'Yggdroot/indentLine'
+Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+Plug 'monkoose/fzf-hoogle.vim'
 "Plug 'terryma/vim-smooth-scroll'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
@@ -18,18 +21,22 @@ Plug 'kien/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 "Plug 'yonchu/accelerated-smooth-scroll'
 Plug 'lilydjwg/colorizer'
+"Plug 'xolox/vim-misc'
+"Plug 'xolox/vim-session'
 " Syntax
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'purescript-contrib/purescript-vim'
 Plug 'vmchale/dhall-vim'
 " Themes
-Plug 'altercation/vim-colors-solarized'
-Plug 'morhetz/gruvbox'
-Plug 'flazz/vim-colorschemes'
-Plug 'ayu-theme/ayu-vim'
-Plug 'rakr/vim-one'
-Plug 'dracula/vim'
+"Plug 'altercation/vim-colors-solarized'
+Plug 'gruvbox-community/gruvbox'
+"Plug 'flazz/vim-colorschemes'
+"Plug 'ayu-theme/ayu-vim'
+"Plug 'rakr/vim-one'
+"Plug 'dracula/vim', { 'as': 'dracula' }
+"Plug 'whatyouhide/vim-gotham'
+"Plug 'Rigellute/rigel'
 call plug#end()
 
 " general settings
@@ -54,7 +61,7 @@ syntax on
 set t_Co=256
 set encoding=utf-8
 set background=dark
-colorscheme dracula
+colorscheme gruvbox
 autocmd BufRead *.sql set filetype=mysql      
 set cmdheight=2
 set updatetime=300
@@ -62,6 +69,7 @@ set updatetime=300
 set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
+set cursorline
 
 " bindings
 let mapleader = " "
@@ -97,17 +105,20 @@ nnoremap <leader>ml <C-w>l
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 
+"gruvbox
+let g:gruvbox_bold = 1
+let g:gruvbox_contrast_dark = 'hard'
+
 " smooth scroll
 "noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 30, 2)<CR>
 "noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 30, 2)<CR>
 "noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 30, 4)<CR>
 "noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 30, 4)<CR>
-
 " Airline
 let g:airline#extensions#tabline#enabled  = 1
 let g:airline_powerline_fonts             = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_theme                       = 'dracula'
+let g:airline_theme                       = 'gruvbox'
 let g:airline_powerline_fonts             = 1
 let g:airline#extensions#coc#enabled = 1
 let airline#extensions#coc#error_symbol = 'E:'
@@ -151,9 +162,12 @@ function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   else
-    call CocAction('doHover')
+    call CocActionAsync('doHover')
   endif
 endfunction
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
@@ -164,7 +178,9 @@ augroup end
 " Show all diagnostics
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " Find symbol of current document
-nnoremap <silent> <space>s  :<C-u>CocList outline<cr>
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Restart Coc
+nnoremap <silent> <leader>cr :CocRestart<cr>
 
 " Tabular
 nmap <Leader>t= :Tabularize /=<CR>
@@ -174,7 +190,6 @@ vmap <Leader>t: :Tabularize /:\zs<CR>
 
 " NERDtree
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "Toggle NERDTree with Ctrl-N
 map <C-n> :NERDTreeToggle<CR>
 "Show hidden files in NERDTree
@@ -186,10 +201,12 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
+"autoload
+let g:session_autoload = 'no'
 " cpp
 autocmd Filetype cpp setlocal tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 " haskell
-autocmd Filetype haskell setlocal formatprg=stylish-haskell
+autocmd Filetype haskell setlocal formatprg=ormolu
 autocmd Filetype haskell setlocal tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 let g:cabal_indent_section            = 2
 let g:haskell_backpack                = 1                " to enable highlighting of backpack keywords
@@ -218,9 +235,14 @@ let purescript_indent_where = 6
 let purescript_indent_do = 3
 let purescript_indent_in = 1
 let purescript_indent_dot = v:true
+" indentline
+autocmd Filetype json let g:indentLine_enabled = 0
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_setConceal = 2
+let g:indentLine_concealcursor = ""
 
-
-
-
-
-
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun

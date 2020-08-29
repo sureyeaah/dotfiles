@@ -11,39 +11,28 @@ set $mod Mod4
 font pango:Fira Code Nerd Font Bold 12
 
 #::::::::::::::::::::::::::::: Frame window colors :::::::::::::::::::::::::::::::::::#
-#set $back               #1d1F21
-#set $black              #282A2E
-#set $grey               #373B41
-#set $lightgrey          #707880
-#set $white              #C5C8C6
-#set $yellow             #F0C674
-#set $red                #CC6666
-#set $darkred            #A54242
-#set $green              #98C379
-#set $blue               #56737a
+set $bg #282828
+set $red #cc241d
+set $green #98971a
+set $yellow #d79921
+set $blue #458588
+set $purple #b16286
+set $aqua #689d68
+set $gray #a89984
+set $darkgray #1d2021
 
-#class                  border      backgr.     text        split
-#client.focused          $green       $green       $black      $green
-#client.focused_inactive $grey       $grey       $lightgrey  $grey
-#client.unfocused        $grey       $grey       $lightgrey  $grey
-#client.urgent           $red        $red        $black      $red
-#client.background       $back
-
-
-# class                 border  bground text    indicator child_border
-client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
-client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
-client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
-client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
-client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
-
-client.background       #F8F8F2
+# blue gruvbox
+# class                 border|backgr|text|indicator|child_border
+client.focused          $blue $blue $darkgray $purple $blue
+client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
+client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
+client.urgent           $red $red $white $red $red
 #:::::::::::::::::::::::: Settings for gaps window ::::::::::::::::::::::::::::#
 
 #smart_gaps on
 smart_borders on
-gaps inner 10
-gaps outer 2
+gaps inner 0
+gaps outer 0
 
 default_border pixel 2
 default_floating_border pixel 1
@@ -107,7 +96,12 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+# bindsym $mod+s layout stacking
+bindsym $mod+s layout splitv;\
+               move left;\
+               split v;\
+               layout stacking
+bindsym $mod+Shift+s resize grow right 20 px or 20 ppt;
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -124,14 +118,14 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 set $ws1 1:
 set $ws2 2:
-set $ws3 3:
+set $ws3 3:
 set $ws4 4:
-set $ws5 5:
-set $ws6 6:
+set $ws5 5:
+set $ws6 6:
 set $ws7 7
 set $ws8 8
 set $ws9 9
-set $ws10 10:
+set $ws10 10:
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -157,6 +151,23 @@ bindsym $mod+shift+8  move container to workspace $ws8
 bindsym $mod+shift+9  move container to workspace $ws9
 bindsym $mod+shift+0  move container to workspace $ws10
 
+set $monitor0 eDP1
+set $monitor1 HDMI1
+#set $monitor1 eDP1
+
+workspace $ws1 output $monitor0
+workspace $ws2 output $monitor0
+workspace $ws3 output $monitor0
+workspace $ws4 output $monitor0
+workspace $ws5 output $monitor0
+workspace $ws6 output $monitor1
+workspace $ws7 output $monitor1
+workspace $ws8 output $monitor1
+workspace $ws9 output $monitor1
+workspace $ws10 output $monitor1
+
+bindsym $mod+Shift+m exec "xrandr --output HDMI1 --off --left-of eDP1"
+bindsym $mod+m exec "xrandr --output HDMI1 --auto --left-of eDP1"
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -187,29 +198,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# start i3bar to display a workspace bar
-#bar {
-    #status_command          i3blocks
-    #bindsym button4         nop
-    #bindsym button5         nop
-    #position                bottom
-    #tray_output             primary
-    #separator_symbol        "·"
-    #workspace_buttons       yes
-    #strip_workspace_numbers no
-
-    #colors {
-        #background  #212121
-        #statusline  #DDDDDD
-        #separator   #666666
-        ## class             border  backgr. text
-        #focused_workspace   #2B83A6 #2B83A6 #FFFFFF
-        #active_workspace    #212121 #212121 #FFFFFF
-        #inactive_workspace  #212121 #212121 #86888C
-        #urgent_workspace    #D64E4E #D64E4E #FFFFFF
-    #}
-#}
-
 #::::::::::::::::::::::::::::::: Out system :::::::::::::::::::::::::::::::::::#
 
 set $Locker i3lock -c #000000 && sleep 1
@@ -235,17 +223,11 @@ bindsym $mod+minus scratchpad show
 #:::::::::::::::::::::::::::::::: Windows :::::::::::::::::::::::::::::::::::::#
 # set specific windows to floating mode
 for_window [class="Lxappearance"]                   floating enable
-for_window [class="Boostnote"]                      floating enable
 
-
-# Pulse Audio controls
-
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q sset Master 5%+
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset Master 5%-
+# Volume controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q sset Master 5%+ unmute
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset Master 5%- unmute
 bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
-#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Sreen brightness controls
 # increase screen brightness
@@ -257,9 +239,11 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
-#bindsym XF86AudioPause exec mpc toggle
-#bindsym XF86AudioNext exec mpc next
-#bindsym XF86AudioPrev exec mpc prev
+
+#Workspace settings
+assign [class="discord"] $ws10
+assign [class="Slack"] $ws10
+assign [class="Stremio"] $ws6
 
 # Screenshot
 bindsym Print exec gnome-screenshot -i
@@ -283,3 +267,6 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 # Replace caps with control
 exec setxkbmap -option ctrl:nocaps
 # vim:filetype=i3
+exec xset dpms 0 0 3600
+exec dunst
+exec --no-startup-id ~/scripts/discharging.sh

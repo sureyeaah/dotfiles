@@ -4,9 +4,6 @@
 ;--------------------------------------------
 
 [colors]
-        *.foreground:   #c5c8c6
-        *.background:   #1e1e20
-        *.cursorColor:  #c5c8c6
 
         black = ${xrdb:color0}
         red = ${xrdb:color1}
@@ -75,7 +72,7 @@
         font-1 = FontAwesome:pixelsize=5;2
 ;previous playpause next
 	modules-left = workspaces
-	modules-center = xwindow
+	modules-center = spotify 
 	modules-right  = filesystem cpu ram battery volume date
 
 	fixed-center = true
@@ -380,3 +377,13 @@ fixed-values = true
 ; Default: 2
 spacing = 1
 label-foreground = ${colors.white}
+
+[module/spotify]
+type = custom/script
+tail = true
+interval = 5
+format-prefix = ""
+format = <label>
+exec = ~/.config/polybar/spotify.sh
+label-foreground = ${colors.green}
+label-padding    = 1

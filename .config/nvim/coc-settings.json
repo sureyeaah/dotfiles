@@ -7,9 +7,11 @@
       "filetypes": ["c", "cpp", "objc", "objcpp"]
     },
     "haskell": {
-      "command": "hie-wrapper",
+      "command": "haskell-language-server-wrapper",
+//      "command": "ghcide",
       "args": ["--lsp"],
       "rootPatterns": [
+        "hie.yaml",
         "*.cabal",
         "stack.yaml",
         "cabal.project",
@@ -27,10 +29,16 @@
     },
     "purescript": {
        "command": "purescript-language-server",
-       "args": ["--stdio"],
+//       "args": ["--stdio", "--config {\"purescript.buildCommand\":\"spago build -p ./Config/development/Config.purs\"}"],
+       "args": ["--stdio", "--config {\"purescript.buildCommand\":\"pulp build\"}"],
        "filetypes": ["purescript"],
        "rootPatterns": ["bower.json", "psc-package.json", "spago.dhall"]
-     }
+     },
+     "ocaml-lsp": {
+        "command": "opam",
+        "args": ["config", "exec", "--", "ocamllsp"],
+        "filetypes": ["ocaml", "reason"]
+    }
   },
   "coc.preferences.hoverTarget": "float"
 }
